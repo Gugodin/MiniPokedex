@@ -17,7 +17,7 @@
    <widget class="QPushButton" name="gen1Button">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>130</x>
       <y>110</y>
       <width>181</width>
       <height>91</height>
@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="gen5Button">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>470</x>
       <y>110</y>
       <width>181</width>
       <height>91</height>
@@ -43,7 +43,7 @@
    <widget class="QPushButton" name="gen2Button">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>130</x>
       <y>220</y>
       <width>181</width>
       <height>91</height>
@@ -56,7 +56,7 @@
    <widget class="QPushButton" name="gen6Button">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>470</x>
       <y>220</y>
       <width>181</width>
       <height>91</height>
@@ -69,7 +69,7 @@
    <widget class="QPushButton" name="gen3Button">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>130</x>
       <y>320</y>
       <width>181</width>
       <height>91</height>
@@ -82,7 +82,7 @@
    <widget class="QPushButton" name="gen7Button">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>470</x>
       <y>320</y>
       <width>181</width>
       <height>91</height>
@@ -95,7 +95,7 @@
    <widget class="QPushButton" name="gen4Button">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>130</x>
       <y>430</y>
       <width>181</width>
       <height>91</height>
@@ -108,7 +108,7 @@
    <widget class="QPushButton" name="gen8Button">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>470</x>
       <y>430</y>
       <width>181</width>
       <height>91</height>
@@ -121,7 +121,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>320</x>
       <y>20</y>
       <width>191</width>
       <height>51</height>
