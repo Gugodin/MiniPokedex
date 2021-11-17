@@ -19,15 +19,10 @@ titulo = tk.Label(window, text='Pokédex')
 titulo.config(font=('Arial',32))
 titulo.pack(padx=10,pady=10)
 
-
 def buscarPokemon(id):
     pokemon = pypokedex.get(name=id)
     print(pokemon)
     return pokemon
-    
-
-
-    
 
 pokemons = {
     'gen1' : [],
@@ -61,32 +56,41 @@ for i in range(1,totalPoke):
         pokemons['gen8'].append(str(i))
     
 
+def isSorted(array:list):
+    for i in range(len(array)):
+        if i+1 < len(array):
+            if array[i] > array[i+1]:
+                return False
+    return True
+
+def sortPokemons(array:list):
+    i = 0
+    while True:
+        if array[i] > array[i+1]:
+            temp = array[i]
+            array[i] = array[i+1]
+            array[i+1] = temp
+            i = i - 1
+        else:
+            i = i + 1
+        if isSorted(array):
+            return array
+            
 
 def multiDescarga(limitePokemones):
    print('Procesos')
    with ThreadPoolExecutor(max_workers=len(limitePokemones)) as executor:
     return list(executor.map(buscarPokemon,limitePokemones))
-      
-#    with Pool(len(limitePokemones)) as p:
-#       return p.map(buscarPokemon,limitePokemones) 
-      
-#       for i in range(len(hola)):
-#           pokemones.append(hola[i])
-#       p.terminate()
-#    print('Termine')
-#    breakpoint
-    
+
 
 if __name__ == '__main__':
-    genracion1 =None
+    
     print('Inicio')
 
-    pokemones = []
-
-    for i in range(8):
-        pokemones.append(multiDescarga(pokemons['gen'+str(i+1)]))
+    # for i in range(8):
+    #     pokemones.append(multiDescarga(pokemons['gen'+str(i+1)]))
     
-    print(len(pokemones))
+    # print(len(pokemones))
     # thread = Thread(target=multiDescarga, args=(pokemons['gen1'],))
     # thread.start()
     # return_value = thread.join()
