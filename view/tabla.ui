@@ -40,8 +40,8 @@
    <widget class="QLabel" name="Generacion">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>90</y>
+      <x>220</x>
+      <y>40</y>
       <width>291</width>
       <height>71</height>
      </rect>
@@ -86,8 +86,61 @@
      <string>Regresar</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="datos">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>510</y>
+      <width>101</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ver datos</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>500</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>22</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="img">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../EXTRAS/fondo.jpg</pixmap>
+    </property>
+   </widget>
+   <zorder>img</zorder>
+   <zorder>tabla</zorder>
+   <zorder>Generacion</zorder>
+   <zorder>numGen</zorder>
+   <zorder>regresar</zorder>
+   <zorder>datos</zorder>
+   <zorder>label</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

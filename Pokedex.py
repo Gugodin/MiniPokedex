@@ -1,26 +1,17 @@
 from concurrent.futures.thread import ThreadPoolExecutor
 from PyQt5 import QtWidgets
 import pypokedex
-import PIL.Image, PIL.ImageTk
-import tkinter as tk
 import urllib3
 from io import BytesIO
 from multiprocessing import Pool
 from threading import Thread
 from urllib3 import response
-import time
 from PyQt5 import uic
-from PyQt5.QtWidgets import QAbstractItemView, QMainWindow, QApplication, QTableWidgetItem
+from PyQt5.QtWidgets import QAbstractItemView, QMainWindow, QApplication, QTableWidgetItem, QDialog
 import sys
+from PyQt5.QtGui import QPixmap
+import PIL.Image, PIL.ImageQt
 
-window = tk.Tk()
-window.geometry('600x500')
-window.title('Pokédex')
-window.config(padx=10,pady=10)
-
-titulo = tk.Label(window, text='Pokédex')
-titulo.config(font=('Arial',32))
-titulo.pack(padx=10,pady=10)
 
 class index(QMainWindow):
     pokemons = {
@@ -37,7 +28,8 @@ class index(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("./view/menu.ui", self)
-        for i in range(1,totalPoke):
+        #self.setStyleSheet("background-color: gray;")
+        for i in range(1,900):
             if i < 152:
                 self.pokemons['gen1'].append(str(i))
             if i >= 152 and i <= 251:
@@ -63,6 +55,7 @@ class index(QMainWindow):
         self.gen6Button.clicked.connect(lambda:self.ventana2('6'))
         self.gen7Button.clicked.connect(lambda:self.ventana2('7'))
         self.gen8Button.clicked.connect(lambda:self.ventana2('8'))
+        
 
         
     
@@ -77,8 +70,9 @@ class index(QMainWindow):
         self.tabla.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tabla.setDragDropOverwriteMode(False)
         self.tabla.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.datos.clicked.connect(lambda:self.ventana3(self.tabla.currentItem().row()))
         
-        for i in range(0,len(poke)):
+        for i in range(0,len(poke)): 
             name = poke[i].name.capitalize()
             self.tabla.setItem(i,0,QTableWidgetItem(name))
             text = '-'.join([t for t in poke[i].types])
@@ -96,6 +90,31 @@ class index(QMainWindow):
         self.gen7Button.clicked.connect(lambda:self.ventana2('7'))
         self.gen8Button.clicked.connect(lambda:self.ventana2('8'))
 
+    def ventana3(self,name2):
+        print('boton3')
+        name = str(self.tabla.item(name2,0).text())
+        name = name.lower()
+        pokemon = self.buscarPokemon(name)
+        tipo = '-'.join([t for t in pokemon.types])
+        tipo = tipo.replace('normal','Normal').replace('steel','Acero').replace('water','Agua').replace('bug','Bicho').replace('dragon','Dragón').replace('electric','Electrico').replace('ghost','Fantasma').replace('fire','Fuego').replace('fairy','Hada').replace('ice','Hielo').replace('fighting','Lucha').replace('grass','Planta').replace('psychic','Psiquico').replace('dark','Siniestro').replace('ground','Tierra').replace('poison','Veneno').replace('flying','Volador').replace('rock','Roca')
+        
+        print(name+' '+ tipo)
+
+        http= urllib3.PoolManager()
+        response = http.request('GET', pokemon.sprites.front.get('default'))
+        
+        image = PIL.Image.open(BytesIO(response.data))
+
+        img = PIL.ImageQt.toqpixmap(image)
+
+        # qpixmap = QPixmap(img)
+
+        self.poke = pokemonWindow(name,tipo,pokemon.dex,img)
+        self.poke.exec_()
+
+
+
+
     def buscarPokemon(self,id):
         pokemon = pypokedex.get(name=id)
         print(pokemon)
@@ -108,10 +127,16 @@ class index(QMainWindow):
 
 
 
-totalPoke = 900
+class pokemonWindow(QDialog):
+    def __init__(self,pokemonName:str,pokemonType:str,pokemonIndex:str,image):
+        QDialog.__init__(self)
+        uic.loadUi('./view/pokemon.ui',self)
+        self.nombreP.setText(pokemonName.capitalize())
+        self.tipos.setText(str(pokemonType))
+        self.numero.setText(str(pokemonIndex))
+        self.sprite.setPixmap(image)
 
 
-    
 def vista():
     app = QApplication(sys.argv)
     GUI = index()
@@ -119,34 +144,12 @@ def vista():
     
     sys.exit(app.exec_())
     
-
-
-      
-#    with Pool(len(limitePokemones)) as p:
-#       return p.map(buscarPokemon,limitePokemones) 
-      
-#       for i in range(len(hola)):
-#           pokemones.append(hola[i])
-#       p.terminate()
-#    print('Termine')
-#    breakpoint
     
 
 if __name__ == '__main__':
 
-    print('Inicio')
-
-    # for i in range(8):
-    #     pokemones.append(multiDescarga(pokemons['gen'+str(i+1)]))
-    
-
     vista()
-    # thread = Thread(target=multiDescarga, args=(pokemons['gen1'],))
-    # thread.start()
-    # return_value = thread.join()
-    # print(return_value)
-    # pokemones = multiHilos()
-    # print(pokemones[1].dex)
+
 
 
 
@@ -154,5 +157,3 @@ if __name__ == '__main__':
     
 
 
-
-# window.mainloop()

@@ -136,18 +136,33 @@
      <string>Pokédex</string>
     </property>
    </widget>
+   <widget class="QLabel" name="img">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-10</y>
+      <width>801</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../EXTRAS/fondo.jpg</pixmap>
+    </property>
+   </widget>
+   <zorder>img</zorder>
+   <zorder>gen1Button</zorder>
+   <zorder>gen5Button</zorder>
+   <zorder>gen2Button</zorder>
+   <zorder>gen6Button</zorder>
+   <zorder>gen3Button</zorder>
+   <zorder>gen7Button</zorder>
+   <zorder>gen4Button</zorder>
+   <zorder>gen8Button</zorder>
+   <zorder>label</zorder>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
